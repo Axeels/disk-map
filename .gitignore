@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+*.log
+.DS_Store
+Thumbs.db
+_preview_space/
+_inspect_state.py
+*.vscdb
+.env
+.env.*

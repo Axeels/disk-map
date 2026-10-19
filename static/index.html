@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <title>Disk Map</title>
+  <link rel="stylesheet" href="/app.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="top">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div>
+          <div class="wordmark">Disk Map</div>
+          <div class="tagline">Find what’s using your space</div>
+        </div>
+      </div>
+      <div class="top-meta" id="top-meta"></div>
+      <div class="top-actions" id="top-actions"></div>
+    </header>
+
+    <section id="view-home" class="view"></section>
+
+    <section id="view-scan" class="view hidden">
+      <div class="scan-wrap">
+        <div class="scan-card">
+          <p class="kicker">Scanning</p>
+          <h2 id="scan-target">Starting…</h2>
+          <div id="scan-bytes" class="scan-bytes">0 B</div>
+          <div id="scan-counts" class="scan-counts">Walking folders</div>
+          <div class="scan-bar" aria-hidden="true"><span></span></div>
+          <p id="scan-current" class="scan-current"></p>
+          <div class="scan-actions">
+            <button type="button" class="btn" id="scan-cancel">Stop and keep what was counted</button>
+          </div>
+          <p class="fine">Every file is counted in the folder totals. You can stop and scan a smaller folder if a whole drive is taking too long.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-results" class="view hidden">
+      <div id="banners"></div>
+      <div class="results-grid">
+        <main class="stage">
+          <div class="stage-bar">
+            <div class="tabs" role="tablist">
+              <button type="button" class="tab active" data-view="map" role="tab">Map</button>
+              <button type="button" class="tab" data-view="files" role="tab">Files</button>
+              <button type="button" class="tab" data-view="insights" role="tab">Insights</button>
+            </div>
+            <div id="crumb" class="crumb"></div>
+          </div>
+
+          <div id="panel-map" class="panel">
+            <div id="legend" class="legend"></div>
+            <div id="treemap" class="treemap"></div>
+            <div class="folder-pane">
+              <div class="folder-pane-head">
+                <div>
+                  <h2 id="folder-title">This folder</h2>
+                  <p id="folder-sub" class="fine"></p>
+                </div>
+                <div class="folder-tools">
+                  <input id="folder-filter" type="search" placeholder="Filter this list" spellcheck="false" />
+                  <button type="button" class="btn" id="list-all">Show every file here</button>
+                </div>
+              </div>
+              <div id="folder-table" class="table-wrap"></div>
+            </div>
+          </div>
+
+          <div id="panel-files" class="panel hidden">
+            <div class="filters">
+              <input id="file-search" type="search" placeholder="Search file and folder names" spellcheck="false" />
+              <select id="file-min">
+                <option value="0">64 KB and up</option>
+                <option value="1048576">Over 1 MB</option>
+                <option value="10485760">Over 10 MB</option>
+                <option value="104857600">Over 100 MB</option>
+                <option value="1073741824">Over 1 GB</option>
+              </select>
+              <select id="file-cat"><option value="">All types</option></select>
+              <select id="file-age">
+                <option value="">Any age</option>
+                <option value="30">Older than 30 days</option>
+                <option value="90">Older than 90 days</option>
+                <option value="180">Older than 6 months</option>
+                <option value="365">Older than 1 year</option>
+                <option value="730">Older than 2 years</option>
+              </select>
+              <label class="check"><input type="checkbox" id="file-under" /> Inside the open folder</label>
+              <button type="button" class="btn" id="export-csv">Export CSV</button>
+            </div>
+            <p id="file-note" class="fine"></p>
+            <div id="file-results" class="table-wrap grow"></div>
+            <div id="file-pager" class="pager"></div>
+          </div>
+
+          <div id="panel-insights" class="panel insights hidden"></div>
+        </main>
+        <aside id="inspector" class="inspector"></aside>
+      </div>
+    </section>
+  </div>
+  <div id="tip" class="tip hidden" role="tooltip"></div>
+  <div id="toast" class="toast hidden" role="status"></div>
+  <div id="modal-root"></div>
+  <script src="/app.js"></script>
+</body>
+</html>
